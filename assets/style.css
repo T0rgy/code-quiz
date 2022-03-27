@@ -20,7 +20,7 @@ header a {
     color: teal;
 }
 
-.quiz-area {
+#quiz-area, #homePage {
     padding: 60px;
     height: 600px;
     position: relative;
@@ -28,19 +28,19 @@ header a {
     text-align: center;
 
 }
-main h1 {
+h1, h2 {
     display: flex;
     justify-content: center;
     padding: 10px 20px;
     color: teal;
+    font-weight: bolder;
 }
 
-main p {
-    font-size: medium;
-
+section p {
+    text-align: center;
 }
 
-.startQ {
+button {
     margin-top: 20px;
     padding: 15px 25px;
     font-size: 24px;
@@ -53,9 +53,9 @@ main p {
     box-shadow: 0 9px #999;
 }
   
-.startQ:hover {background-color: rgb(0, 206, 206)}
+button:hover {background-color: rgb(0, 206, 206)}
   
-.startQ:active {
+button:active {
     background-color: teal;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
