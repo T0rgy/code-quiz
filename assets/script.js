@@ -25,6 +25,7 @@ var questionNumber = 0;
 var result;
 var questionIndex = 0;
 var correctAnswer = 0;
+var i = 0;
 
 //Questions array
 var questions = [
@@ -114,3 +115,82 @@ function answerResult(answer) {
   }
 };
 
+function c1() {
+  answerResult(0);
+};
+function c2() {
+  answerResult(1);
+};
+function c3() {
+  answerResult(2);
+};
+function c4() {
+  answerResult(3);
+};
+
+function gameOver() {
+  summary.style.display = "block";
+  quizArea.style.display = "none";
+  homePage.style.display = "none";
+  timer.style.display = "none";
+  timesUp.style.display = "block"
+
+  finalScore.textContent = correctAnswer;
+};
+
+function storeHS(event) {
+  event.preventDefult();
+  if (initialInput.value === "") {
+    alert("Please enter your initials.");
+    return;
+  }
+
+  highScores.style.display = "block";
+  timer.style.display = "none";
+  timesUp.style.display = "none";
+  homePage.style.display = "none";
+  quizArea.style.display = "none";
+  summary.style.display = "none";
+
+  var savedHS = localStorage.getItem("high scores");
+  var scoresArray;
+  var userScore = {
+    initials: initialInput.value,
+    score: finalScore.textContent
+  };
+
+  if (savedHS = null) {
+    scoresArray = [];
+  } else {
+    scoresArray = JSON.parse(savedHS)
+  }
+
+  scoresArray.push(userScore);
+
+  var scoresArrayString = JSON.stringify(scoresArray);
+  window.localStorage.setItem("high scores", scoresArrayString);
+
+  showHS()
+}
+
+function showHS() {
+  highScores.style.display = "block";
+  timer.style.display = "none";
+  timesUp.style.display = "none";
+  homePage.style.display = "none";
+  quizArea.style.display = "none";
+  summary.style.display = "none";
+
+  var savedHS = localStorage.getItem("high scores");
+  var storedHS = JSON.parse(savedHS);
+
+  if (savedHS === null) {
+    return;
+  }
+
+  for (; i < storedHS.length; i++) {
+    var hs = document.createElement("p");
+    hs.innerHTML = storeHS[i].initials + ": " + storeHS[i].score;
+    listOfScores.appendChild(hs);
+  }
+};
