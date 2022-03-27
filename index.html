@@ -11,6 +11,7 @@
     <header>
         <a href="./indexHigh-Score.html" class="highS">View High Scores</a>
         <div>Timer: <span id="timer">01:00</span></div>
+        <div id="timesUp" style="display: none;">Time's Up!</div>
     </header>
 
     <main class="quiz-area">
@@ -20,14 +21,37 @@
         <button id="startQ" class="startQ" onclick="start()">Start Quiz</button>
         </div>
 
-        <section>
+        <section style="display: none;">
             <h1 id="question"></h1>
-            <div id="c1" class="choice"></div>
-            <div id="c2" class="choice"></div>
-            <div id="c3" class="choice"></div>
-            <div id="c4" class="choice"></div>
+            <div>
+                <button id="c1" class="choice"></button>
+                <button id="c2" class="choice"></button>
+                <button id="c3" class="choice"></button>
+                <button id="c4" class="choice"></button>
+                <hr id="line" style="display: none;">
+                <p id="answerResult" style="display: none;"></p>
+                <p id="answer-result" class="answer-result"></p>
+            </div>
+        </section>
 
-            <div id="answer-result" class="answer-result"></div>
+        <section style="display: none;" id="summary">
+            <div>
+                <h2>Your final score is <span id="finalScore"></span>.</h2>
+                <form>
+                    <p>Enter your initials: <input id="initialInput" type="text">
+                    <button type="submit" id="initialBtn">Submit</button>
+                    </p>
+                </form> 
+            </div>
+        </section>
+
+        <section style="display: none;" id="highScores">
+        <h2>High Scores</h2>
+        <div id="listOfScores"></div>
+        <p>
+            <button type="submit" id="goBackBtn">Go Back</button>
+            <button type="submit" id="clearHighScores">Clear High Scores</button>
+        </p>
         </section>
     </main>
 

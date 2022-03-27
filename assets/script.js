@@ -1,13 +1,30 @@
 //Global veriables
-var timer = startTimer();
 var time = 60;
+var timer = document.getElementById("timer");
+var timeLeft = document.getElementById("timeLeft");
+var timesUp = document.getElementById("timesUp");
+var homePage = document.getElementById("homePage");
+var startQBtn = document.getElementById("startQ");
 var questionPlace = document.getElementById("question");
+var questionDiv = document.getElementById("quiz-area")
 var choice1 = document.getElementById("c1");
 var choice2 = document.getElementById("c2");
 var choice3 = document.getElementById("c3");
 var choice4 = document.getElementById("c4");
-var right = time + 10;
-var wrong = time - 10;
+var answerResult = document.getElementById("answer-result")
+var summary = document.getElementById("summary")
+var initialInput = document.getElementById("initialInput");
+var initialBtn = document.getElementById("initialBtn");
+var finalScore = document.getElementById("finalScore");
+var highScores = document.getElementById("highScores");
+var viewHighScores = document.getElementById("viewHighScores");
+var listOfScores = document.getElementById("listOfScores");
+var clearHighScores = document.getElementById("clearHighScores");
+var goBackBtn = document.getElementById("goBackBtn");
+var questionNumber = 0;
+var result;
+var questionIndex = 0;
+var correctAnswer = 0;
 
 //Questions array
 var questions = [
@@ -38,25 +55,5 @@ var questions = [
 }];
 
 
+//functions
 
-
-
-
-function startTimer(){
-    setInterval(function() {
-      time--;
-      if (time >= 0) {
-        span = document.getElementById("timer");
-        span.innerHTML = time;
-      }
-      if (time === 0) {
-          alert('Sorry, out of time');
-          clearInterval(time);
-      }
-    }, 1000);
-}
-
-function start(){
-    document.getElementById("startQ");
-    startTimer();
-};
