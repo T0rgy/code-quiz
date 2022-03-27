@@ -63,11 +63,13 @@ function quiz() {
   timeLeft.textContent = time;
   initialInput.textContent = "";
 
+  //hide homepage and show first question
   homePage.style.display = "none";
   quizArea.style.display = "block";
   timer.style.display = "block";
   timesUp.style.display = "none";
 
+  //timer function
   var startTimer = setInterval(function() {
     time--;
     timeLeft.textContent = time;
@@ -81,6 +83,7 @@ function quiz() {
   showQuiz();
 };
 
+//first question appears
 function showQuiz() {
   nextQuestion();
 };
@@ -93,6 +96,7 @@ function nextQuestion() {
   choice4.textContent = questions[questionIndex].choices[3];
 };
 
+//shows if answer was correct or not
 function checkAnswer(answer) {
   var line = document.getElementById("line")
   line.style.display = "block";
@@ -106,6 +110,7 @@ function checkAnswer(answer) {
     answerResult.textContent = "Wrong... The correct answer was " + questions[questionIndex].answer;
   }
 
+  //next questions appear
   questionIndex++;
   if (questionIndex < questions.length) {
     nextQuestion();
@@ -127,16 +132,18 @@ function c4() {
   checkAnswer(3);
 };
 
+//game is over once all questions are answered or timer reaches 0
 function gameOver() {
   summary.style.display = "block";
   quizArea.style.display = "none";
   homePage.style.display = "none";
   timer.style.display = "none";
   timesUp.style.display = "block"
-
+  //shows final score
   finalScore.textContent = correctAnswer;
 };
 
+//enter initials and high score in local storage
 function storeHS(event) {
   event.preventDefault();
   if (initialInput.value === "") {
@@ -165,15 +172,15 @@ function storeHS(event) {
     score: finalScore.textContent
   };
   scoresArray.push(userScore);
-  console.log(scoresArray);
 
-  // var scoresArrayString = JSON.stringify(scoresArray);
+  //stringify the score array to be stored
   localStorage.setItem("highScores", JSON.stringify(scoresArray));
   
-
+  // shows current high scores
   showHS();
 };
 
+//shows all high scores
 function showHS() {
   highScores.style.display = "block";
   timer.style.display = "none";
@@ -184,11 +191,11 @@ function showHS() {
 
   var savedHS = localStorage.getItem("highScores");
   var storedHS = JSON.parse(savedHS);
-
+  //checking local storage for saved high scores
   if (savedHS === null) {
     return;
   }
-
+  //create p element to display high scores.
   for (; i < storedHS.length; i++) {
     var hs = document.createElement("p");
     hs.innerHTML = storedHS[i].initials + ": " + storedHS[i].score;
@@ -196,6 +203,7 @@ function showHS() {
   }
 };
 
+//Event listeners
 startQBtn.addEventListener("click", quiz);
 choice1.addEventListener("click", c1);
 choice2.addEventListener("click", c2);
@@ -214,5 +222,5 @@ goBackBtn.addEventListener("click", function() {
 clearHighScores.addEventListener("click", function() {
   window.localStorage.removeItem("highScores");
   listOfScores.innerHTML = "High Scores Cleared.";
-  listOfScores.setAttribute("style", "font-family: 'Archivo', sans-serif; font-style: italic;")
+  
 })
